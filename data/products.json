@@ -1,34 +1,21 @@
 [
-  {
-    "name": "Sony WH-1000XM5",
-    "url": "https://www.tokopedia.com/duniacom-srv/sony-wh-1000xm5-wh1000-xm5-wh1000xm5-noise-cancelling-headphones-1731634446228227779"
-  },
-  {
-    "name": "LG UltraGear G4 24G411A Monitor 24 inch",
-    "url": "https://www.tokopedia.com/lg-monitor-official-store/free-t-shirt-ultragear-lg-ultragear-g4-24g411a-b-monitor-gaming-24-inch-fhd-ips-144hz-amd-freesync-premium-pro-nvidia-g-sync-kompatibel-1733887320333780439"
-  },
-  {
-    "name": "Madlions MAD60 HE Keyboard",
-    "url": "https://www.tokopedia.com/infinitas/madlions-mad60-he-8k-hall-effect-60-keyboard-rapid-trigger-socd-dks-wooting-fierce-gaming-gear-1730793856035423546-1734793080524145978"
-  },
-  {
-    "name": "Endgame Gear XM2WE Wireless Mouse",
-    "url": "https://www.tokopedia.com/infinitas/endgame-gear-xm2we-xm2w-wireless-ultra-light-gaming-mouse-hitam-pulsar-glide-a08cc"
-  },
-  {
-    "name": "Endgame Gear OP1W 4K Wireless Mouse",
-    "url": "https://www.tokopedia.com/fraggamingstore/endgame-gear-op1w-endgame-gear-op1-w-4k-wireless-gaming-mouse-1731078689520780696"
-  },
-  {
-    "name": "Furycube G11 Skeleton Wireless Mouse",
-    "url": "https://www.tokopedia.com/furycube-official-store/furyube-g11-skeleton-wireless-gaming-mouse-light-weight-paw3311-mouse-rgb-glow-mouse-1734372166249187052"
-  },
-  {
-    "name": "Logitech G Pro X Superlight 2",
-    "url": "https://www.tokopedia.com/logitech-indonesia/logitech-g-pro-x-superlight-2-mouse-gaming-wireless-e-sports-1729866300734998768"
-  },
-  {
-    "name": "Press Play x Demon Slayer Essential75 HE Keyboard",
-    "url": "https://www.tokopedia.com/pressplay/press-play-x-demon-slayer-essential75-he-tanjiro-edition-75-rapid-trigger-hall-effect-keyboard-1735416425932228237"
-  }
+  {"name": "Sony WH-1000XM5", "url": "https://www.tokopedia.com/duniacom-srv/sony-wh-1000xm5-wh1000-xm5-wh1000xm5-noise-cancelling-headphones-1731634446228227779"},
+  {"name": "LG UltraGear G4 24G411A Monitor", "url": "https://www.tokopedia.com/lg-monitor-official-store/free-t-shirt-ultragear-lg-ultragear-g4-24g411a-b-monitor-gaming-24-inch-fhd-ips-144hz-amd-freesync-premium-pro-nvidia-g-sync-kompatibel-1733887320333780439"},
+  {"name": "Madlions MAD60 HE Keyboard", "url": "https://www.tokopedia.com/infinitas/madlions-mad60-he-8k-hall-effect-60-keyboard-rapid-trigger-socd-dks-wooting-fierce-gaming-gear-1730793856035423546-1734793080524145978"},
+  {"name": "Endgame Gear XM2WE Wireless Mouse", "url": "https://www.tokopedia.com/infinitas/endgame-gear-xm2we-xm2w-wireless-ultra-light-gaming-mouse-hitam-pulsar-glide-a08cc"},
+  {"name": "Furycube G11 Skeleton Wireless Mouse", "url": "https://www.tokopedia.com/furycube-official-store/furyube-g11-skeleton-wireless-gaming-mouse-light-weight-paw3311-mouse-rgb-glow-mouse-1734372166249187052"},
+  {"name": "Logitech G Pro X Superlight 2", "url": "https://www.tokopedia.com/logitech-indonesia/logitech-g-pro-x-superlight-2-mouse-gaming-wireless-e-sports-1729866300734998768"},
+  {"name": "Press Play x Demon Slayer Essential75 HE", "url": "https://www.tokopedia.com/pressplay/press-play-x-demon-slayer-essential75-he-tanjiro-edition-75-rapid-trigger-hall-effect-keyboard-1735416425932228237"},
+  {"name": "Razer DeathAdder Essential Gaming Mouse", "url": "https://www.tokopedia.com/duniacom-srv/razer-deathadder-essential-gaming-mouse-death-adder-black"},
+  {"name": "Rexus F30 Vonix LED RGB Gaming Headset", "url": "https://www.tokopedia.com/tokoteknopro/rexus-f30-vonix-led-rgb-gaming-headset-garansi-resmi-hitam"},
+  {"name": "Logitech G29 Racing Wheel", "url": "https://www.tokopedia.com/logitech-g/logitech-g29-driving-racing-wheel-logitech-driving-shifter-bundling"},
+  {"name": "PXN A7 Gaming Steering Wheel", "url": "https://www.tokopedia.com/pxn/pxn-a7-gaming-steering-wheel-6-1-gear-shifter-for-pc-windows-kabel-computer-joystick-1731548552042415536"},
+  {"name": "Sades Tyto Gaming Microphone", "url": "https://www.tokopedia.com/sades-ryunix-official/sades-tyto-gaming-microphone-1731920419878700152"},
+  {"name": "Fantech Alto 7.1 HG26 RGB Headset", "url": "https://www.tokopedia.com/fantech-official-store/fantech-alto-7-1-hg26-rgb-headset-gaming-earphones-headphones-lighting-microphone-1729587547640728010"},
+  {"name": "Mchose A7 Ultra Wireless Gaming Mouse", "url": "https://www.tokopedia.com/goodgamingshop/mchose-a7-ultra-a7-v2-pro-a7-v2-ultra-8k-pollingrate-59g-lightweight-tri-mode-wireless-gaming-mouse-mouse-gaming-1731470536834713255-1735500772075865767"},
+  {"name": "Endgame Gear XM1 RGB Gaming Mouse", "url": "https://www.tokopedia.com/eltama/endgame-gear-xm1-rgb-lightweight-paracord-gaming-mouse-dark-reflex"},
+  {"name": "Redragon M724 K1NG Gaming Mouse", "url": "https://www.tokopedia.com/redragonindonesia/redragon-mouse-gaming-m724-series-k1ng-m724-wired-rgb-ultra-light-42g-12400dpi-5-tombol-ergonomik-nyaman-grip-dengan-sensor-paw-3327-1732567261770843229"},
+  {"name": "Logitech G304 Lightspeed Wireless Mouse", "url": "https://www.tokopedia.com/logitech-g/logitech-g304-lightspeed-mouse-gaming-wireless-sensor-12k-dpi"},
+  {"name": "NYK Nemesis Riot MQ10 Wireless Mouse", "url": "https://www.tokopedia.com/tokoteknopro/nyk-nemesis-riot-mq10-mq-10-mouse-wireless-dual-mode-rechargeable-battery-with-docking-charging-1730766520942233326"},
+  {"name": "NYK Nemesis Centa KC80 Keyboard Combo", "url": "https://www.tokopedia.com/tokoteknopro/nyk-nemesis-centa-kc80-kc-80-keyboard-combo-3in1-tkl-gaming-set-hitam-2854f"}
 ]
