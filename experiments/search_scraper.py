@@ -3,14 +3,32 @@ from database import init_db, save_product, save_price
 import json
 import time
 
+BLACKLIST = [
+    "seller.tokopedia.com",
+    "tokopedia.com/mobile-apps",
+    "tokopedia.com/help",
+    "tokopedia.com/discovery",
+    "tokopedia.com/promo",
+    "tokopedia.com/people",
+    "tokopedia.com/mitra",
+    "tokopedia.com/cart",
+    "tokopedia.com/login",
+    "tokopedia.com/register",
+    "tokopedia.com/edu",
+]
+
+def valid_product_url(url):
+    if not url:
+        return False
+    for bad in BLACKLIST:
+        if bad in url:
+            return False
+    path = url.replace("https://www.tokopedia.com/", "")
+    parts = path.split("/")
+    return len(parts) >= 2 and parts[1] != ""
 
 KEYWORDS = [
     "gaming mouse",
-    "gaming keyboard",
-    "gaming headset",
-    "gaming monitor",
-    "gaming mousepad",
-    "gaming controller",
 ]
 
 
@@ -91,10 +109,11 @@ def scrape_search_results(page, keyword, max_products=20):
 
             seen.add(clean_url)
 
-            products.append({
-                "name": "Unknown",
-                "url": clean_url
-            })
+            if valid_product_url(clean_url):
+                products.append({
+                    "name": "Unknown",
+                    "url": clean_url
+                })
 
         print(f"✅ Parsed products: {len(products)}")
 
