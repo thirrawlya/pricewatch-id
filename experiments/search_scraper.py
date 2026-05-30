@@ -29,6 +29,20 @@ def valid_product_url(url):
 
 KEYWORDS = [
     "gaming mouse",
+    "mechanical keyboard",
+    "gaming chair",
+    "monitor 144hz",
+    "headset gaming",
+    "webcam 1080p",
+    "external ssd",
+    "gaming laptop",
+    "gaming desktop",
+    "gaming router",
+    "gaming mousepad",
+    "rgb lighting",
+    "gaming desk",
+    "gaming controller",
+    "gaming headset stand", 
 ]
 
 
