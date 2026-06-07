@@ -1,5 +1,6 @@
 from playwright.sync_api import sync_playwright
 from database import init_db, save_product, save_price
+from scraper import scrape_product
 import json
 import time
 
@@ -135,67 +136,6 @@ def scrape_search_results(page, keyword, max_products=20):
         print(f"❌ Failed parsing links: {e}")
 
     return products[:max_products]
-
-
-def scrape_product(page, url):
-
-    try:
-        page.goto(
-            url,
-            wait_until="domcontentloaded",
-            timeout=60000
-        )
-
-        page.wait_for_timeout(5000)
-
-    except Exception as e:
-        print(f"❌ Failed load product: {e}")
-        return None
-
-    data = {
-        "name": None,
-        "price": None,
-        "rating": None,
-        "sold": None,
-        "store": None
-    }
-
-    try:
-        data["name"] = page.locator(
-            '[data-testid="lblPDPDetailProductName"]'
-        ).first.inner_text(timeout=5000)
-    except:
-        pass
-
-    try:
-        data["price"] = page.locator(
-            '[data-testid="lblPDPDetailProductPrice"]'
-        ).first.inner_text(timeout=5000)
-    except:
-        pass
-
-    try:
-        data["rating"] = page.locator(
-            '[data-testid="lblPDPDetailProductRatingNumber"]'
-        ).first.inner_text(timeout=5000)
-    except:
-        pass
-
-    try:
-        data["sold"] = page.locator(
-            '[data-testid="lblPDPDetailProductSoldCounter"]'
-        ).first.inner_text(timeout=5000)
-    except:
-        pass
-
-    try:
-        data["store"] = page.locator(
-            '[data-testid="llbPDPFooterShopName"]'
-        ).first.inner_text(timeout=5000)
-    except:
-        pass
-
-    return data
 
 
 if __name__ == "__main__":

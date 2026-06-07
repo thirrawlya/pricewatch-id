@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from tokopedia_test import scrape_product
+from scraper import scrape_product
 from database import init_db, save_product, save_price
 from playwright.sync_api import sync_playwright, BrowserContext
 from logger import setup_logging, ScrapeMetrics, HealthCheck, ErrorTracker

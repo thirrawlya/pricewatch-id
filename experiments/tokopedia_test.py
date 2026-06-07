@@ -1,97 +1,10 @@
 from playwright.sync_api import sync_playwright
 from database import init_db, save_product, save_price
+from scraper import scrape_product
 import json
 import time
 
-def extract_text(page, selectors_list, timeout=5000, debug=False):
-    """
-    Try multiple selectors in order until one succeeds.
-    This handles cases where selectors change or are unavailable.
-    """
-    for selector in selectors_list:
-        try:
-            text = page.locator(selector).first.inner_text(timeout=timeout)
-            if text and text.strip():
-                if debug:
-                    print(f"  ✓ Found with: {selector}")
-                return text.strip()
-        except Exception as e:
-            if debug:
-                print(f"  ✗ Failed: {selector} - {type(e).__name__}")
-            continue
-    
-    if debug:
-        print(f"  ⚠️ All selectors failed")
-    return None
 
-
-def scrape_product(page, url, debug=False):
-    try:
-        page.goto(url, wait_until="domcontentloaded", timeout=30000)
-        # Wait for page to fully load - wait for main content
-        page.wait_for_selector("h1, [data-testid*='Product']", timeout=10000)
-        page.wait_for_timeout(3000)  # Additional stability wait
-    except Exception as e:
-        print(f"❌ Failed to load: {e}")
-        return None
-
-    data = {}
-
-    # Product Name - Multiple selector strategies
-    print("Extracting product name...")
-    name_selectors = [
-        '[data-testid="lblPDPDetailProductName"]',
-        'h1[data-testid*="ProductName"]',
-        'h1',
-        '[class*="product-name"]',
-        '[class*="pdp-detail-title"]',
-    ]
-    data["name"] = extract_text(page, name_selectors, debug=debug)
-    if not data["name"]:
-        print(f"⚠️ Product name not extracted from {url}")
-
-    # Price - Multiple selector strategies
-    print("Extracting price...")
-    price_selectors = [
-        '[data-testid="lblPDPDetailProductPrice"]',
-        '[data-testid*="Price"]',
-        '[class*="price"]',
-        'span[aria-label*="Rp"]',
-    ]
-    data["price"] = extract_text(page, price_selectors, debug=debug)
-
-    # Rating - Multiple selector strategies
-    print("Extracting rating...")
-    rating_selectors = [
-        '[data-testid="lblPDPDetailProductRatingNumber"]',
-        '[data-testid*="Rating"]',
-        '[class*="rating-score"]',
-    ]
-    data["rating"] = extract_text(page, rating_selectors, debug=debug)
-
-    # Sold count - Multiple selector strategies
-    print("Extracting sold count...")
-    sold_selectors = [
-        '[data-testid="lblPDPDetailProductSoldCounter"]',
-        '[data-testid*="Sold"]',
-        '[class*="sold"]',
-    ]
-    data["sold"] = extract_text(page, sold_selectors, debug=debug)
-
-    # Store name - Multiple selector strategies
-    print("Extracting store name...")
-    store_selectors = [
-        '[data-testid="llbPDPFooterShopName"]',
-        '[data-testid*="ShopName"]',
-        '[data-testid*="Shop"]',
-        'a[href*="/shop/"]',
-    ]
-    data["store"] = extract_text(page, store_selectors, debug=debug)
-
-    if debug:
-        print(f"\n📊 Extracted data: {data}")
-
-    return data
 
 if __name__ == "__main__":
     init_db()
