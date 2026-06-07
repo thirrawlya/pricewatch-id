@@ -18,6 +18,9 @@ import signal
 import uuid
 from datetime import datetime
 
+# Optional test mode: set env TEST_PRODUCTS to limit number of products for quick runs
+TEST_PRODUCTS = int(os.environ.get("TEST_PRODUCTS", "0"))
+
 # ============================================================================
 # ANTI-DETECTION CONFIGURATION
 # ============================================================================
@@ -201,10 +204,24 @@ def run_scraper(max_retries=MAX_RETRIES_PER_PRODUCT):
     if not products:
         logger.warning("⚠️ No products to scrape")
         return
-    
+    # If in test mode, limit number of products to scan.
+    if TEST_PRODUCTS and TEST_PRODUCTS > 0:
+        products = products[:TEST_PRODUCTS]
+        logger.info(f"🔬 Test mode: limiting products to {len(products)}")
+
     total_products = len(products)
     logger.info(f"📦 Total products to scrape: {total_products}")
     logger.info(f"🔄 Starting from index: {start_index}")
+
+    # If start_index is beyond the current product list (e.g., resuming from
+    # an old checkpoint) or if we're in TEST mode, reset start_index to 0 so
+    # test runs actually iterate over the limited product set.
+    if start_index >= total_products or (TEST_PRODUCTS and TEST_PRODUCTS > 0):
+        if start_index >= total_products:
+            logger.warning(f"⚠️ Checkpoint index {start_index} >= total products {total_products}; resetting start_index to 0 for this run")
+        else:
+            logger.info("🔬 Test mode active: ignoring previous checkpoint and starting from 0")
+        start_index = 0
     
     # Register cleanup handlers
     def cleanup_database():
@@ -247,15 +264,25 @@ def run_scraper(max_retries=MAX_RETRIES_PER_PRODUCT):
             ]
         )
 
-        context = None
         consecutive_errors = 0
+
+        # Create initial browser context so resuming from a checkpoint
+        # (start_index > 0) still has a valid context before the loop.
+        user_agent = get_random_user_agent()
+        viewport = get_random_viewport()
+        context = create_context_with_stealth(browser, user_agent, viewport)
+        logger.debug(f"🔄 Initial browser context created before loop")
+        logger.debug(f"   UA: {user_agent[:50]}...")
+        logger.debug(f"   Viewport: {viewport['width']}x{viewport['height']}")
 
         try:
             for product_idx in range(start_index, total_products):
                 product = products[product_idx]
                 
-                # Create new context periodically (every N products)
-                if product_idx % PRODUCTS_PER_BATCH == 0:
+                # Create new context periodically (every N products).
+                # Use offset from start_index so resuming doesn't immediately
+                # recreate the context we just made above.
+                if (product_idx - start_index) % PRODUCTS_PER_BATCH == 0 and product_idx != start_index:
                     if context:
                         context.close()
                     
@@ -278,6 +305,7 @@ def run_scraper(max_retries=MAX_RETRIES_PER_PRODUCT):
                 while retries < max_retries:
                     try:
                         page = context.new_page()
+                        # Production: do not enable verbose debug during normal runs
                         result = scrape_product(page, product_url, debug=False)
                         page.close()
 
@@ -351,9 +379,17 @@ def run_scraper(max_retries=MAX_RETRIES_PER_PRODUCT):
             error_tracker.record(e, "unknown")
             raise
         finally:
-            if context:
-                context.close()
-            browser.close()
+            # Closing context may fail if it was already closed elsewhere
+            try:
+                if context:
+                    context.close()
+            except Exception:
+                pass
+
+            try:
+                browser.close()
+            except Exception:
+                pass
 
     # ========================================================================
     # POST-SCRAPE PROCESSING

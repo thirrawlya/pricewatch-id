@@ -23,14 +23,27 @@ def extract_text(page: Page, selectors_list, timeout=5000, debug=False):
 
 def scrape_product(page: Page, url: str, debug=False):
     """Scrape product detail page and return parsed product data."""
+    # Load page; if navigation fails, abort. But if selector wait times out,
+    # continue to fallback extraction attempts.
     try:
         page.goto(url, wait_until="domcontentloaded", timeout=30000)
-        page.wait_for_selector("h1, [data-testid*='Product']", timeout=10000)
-        page.wait_for_timeout(3000)
     except Exception as e:
         if debug:
-            print(f"❌ Failed to load: {e}")
+            print(f"❌ Failed to navigate to page: {e}")
         return None
+
+    try:
+        page.wait_for_selector("h1, [data-testid*='Product']", timeout=20000)
+    except Exception as e:
+        if debug:
+            print(f"⚠️ wait_for_selector timed out, will attempt extraction anyway: {e}")
+
+    # Give some extra time for JS-rendered content
+    try:
+        page.wait_for_timeout(5000)
+    except Exception:
+        # non-fatal if wait_for_timeout fails
+        pass
 
     data = {}
 
