@@ -1,6 +1,6 @@
 # PriceWatchID
 
-> Buying intelligence platform for Indonesian marketplace consumers.
+> Buying intelligence platform focused on skincare products in the Indonesian marketplace.
 
 ---
 
@@ -12,7 +12,7 @@ PriceWatchID helps consumers make more confident buying decisions through:
 * store trust signals
 * buying timing insights
 
-starting with products listed on Tokopedia.
+starting with skincare products listed on Tokopedia.
 
 The core premise:
 

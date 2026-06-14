@@ -29,16 +29,16 @@ def valid_product_url(url):
     return len(parts) >= 2 and parts[1] != ""
 
 KEYWORDS = [
-    "skintific moisturizer",
-    "somethinc sunscreen",
-    "wardah sunscreen",
-    "ms glow serum",
-    "emina skincare",
-    "y.o.u sunscreen",
-    "azarine sunscreen",
-    "avoskin serum",
-    "scarlett whitening",
-    "hanasui serum",
+    "serum vitamin c",
+    "sunscreen spf",
+    "moisturizer wajah",
+    "toner",
+    "face wash",
+    "essence",
+    "skintific",
+    "somethinc",
+    "scarlett",
+    "wardah",
 ]
 
 

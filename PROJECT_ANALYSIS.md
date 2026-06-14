@@ -1,4 +1,4 @@
-# 📊 PRICEWATCH-ID: COMPREHENSIVE PROJECT ANALYSIS
+
 ## Isi, Tujuan, Manfaat, dan Kekurangan
 
 ---

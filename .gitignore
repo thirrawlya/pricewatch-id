@@ -1,0 +1,7 @@
+venv/
+logs/
+backups/
+data/pricewatch.db
+.env
+__pycache__/
+*.pyc
