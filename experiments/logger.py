@@ -8,7 +8,7 @@ import logging.handlers
 import json
 from datetime import datetime
 from pathlib import Path
-from config import (
+from .config import (
     LOG_FILE, LOG_LEVEL, LOG_MAX_BYTES, LOG_BACKUP_COUNT,
     LOGS_DIR, DEBUG_MODE
 )

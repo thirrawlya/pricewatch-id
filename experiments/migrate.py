@@ -1,4 +1,4 @@
-from database import init_db, migrate_db_schema
+from .database import init_db, migrate_db_schema
 
 
 if __name__ == "__main__":

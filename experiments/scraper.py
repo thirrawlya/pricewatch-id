@@ -1,5 +1,5 @@
 from playwright.sync_api import Page
-from parser import parse_price, parse_rating, parse_sold
+from .parser import parse_price, parse_rating, parse_sold
 
 
 def extract_text(page: Page, selectors_list, timeout=5000, debug=False):

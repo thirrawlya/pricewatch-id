@@ -1,6 +1,6 @@
 from playwright.sync_api import sync_playwright
-from database import init_db, save_product, save_price
-from scraper import scrape_product
+from .database import init_db, save_product, save_price
+from .scraper import scrape_product
 import json
 import time
 
@@ -29,21 +29,16 @@ def valid_product_url(url):
     return len(parts) >= 2 and parts[1] != ""
 
 KEYWORDS = [
-    "gaming mouse",
-    "mechanical keyboard",
-    "gaming chair",
-    "monitor 144hz",
-    "headset gaming",
-    "webcam 1080p",
-    "external ssd",
-    "gaming laptop",
-    "gaming desktop",
-    "gaming router",
-    "gaming mousepad",
-    "rgb lighting",
-    "gaming desk",
-    "gaming controller",
-    "gaming headset stand", 
+    "skintific moisturizer",
+    "somethinc sunscreen",
+    "wardah sunscreen",
+    "ms glow serum",
+    "emina skincare",
+    "y.o.u sunscreen",
+    "azarine sunscreen",
+    "avoskin serum",
+    "scarlett whitening",
+    "hanasui serum",
 ]
 
 

@@ -8,7 +8,7 @@ import shutil
 import sqlite3
 from datetime import datetime
 from pathlib import Path
-from config import DB_PATH, BACKUP_DIR, PRODUCTS_JSON, ENABLE_BACKUP, ENABLE_CRASH_RECOVERY
+from .config import DB_PATH, BACKUP_DIR, PRODUCTS_JSON, ENABLE_BACKUP, ENABLE_CRASH_RECOVERY
 
 class CrashRecovery:
     """Handle crash detection and recovery."""

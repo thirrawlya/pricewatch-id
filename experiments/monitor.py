@@ -7,8 +7,8 @@ import json
 import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
-from config import DB_PATH, LOGS_DIR, BACKUP_DIR
-from database import get_connection
+from .config import DB_PATH, LOGS_DIR, BACKUP_DIR
+from .database import get_connection
 
 class SystemMonitor:
     """Monitor system health and generate status reports."""

@@ -1,10 +1,10 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from scraper import scrape_product
-from database import init_db, save_product, save_price
+from .scraper import scrape_product
+from .database import init_db, save_product, save_price
 from playwright.sync_api import sync_playwright, BrowserContext
-from logger import setup_logging, ScrapeMetrics, HealthCheck, ErrorTracker
-from recovery import CrashRecovery, BackupManager, GracefulShutdown
-from config import (
+from .logger import setup_logging, ScrapeMetrics, HealthCheck, ErrorTracker
+from .recovery import CrashRecovery, BackupManager, GracefulShutdown
+from .config import (
     MIN_DELAY, MAX_DELAY, ERROR_BACKOFF_BASE, MAX_RETRIES_PER_PRODUCT,
     PRODUCTS_PER_BATCH, CIRCUIT_BREAKER_THRESHOLD, CIRCUIT_BREAKER_COOLDOWN,
     ENABLE_BACKUP, ENABLE_CRASH_RECOVERY, SCRAPE_INTERVAL_HOURS,

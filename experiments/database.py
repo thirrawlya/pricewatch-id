@@ -1,7 +1,7 @@
 import sqlite3
 import os
-from parser import parse_price, parse_rating, parse_sold
-from config import DB_PATH
+from .parser import parse_price, parse_rating, parse_sold
+from .config import DB_PATH
 
 def get_connection():
     """Get database connection with safety settings."""

@@ -1,6 +1,6 @@
 from playwright.sync_api import sync_playwright
-from database import init_db, save_product, save_price
-from scraper import scrape_product
+from .database import init_db, save_product, save_price
+from .scraper import scrape_product
 import json
 import time
 
