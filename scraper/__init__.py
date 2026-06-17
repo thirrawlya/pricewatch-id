@@ -1,5 +1,5 @@
 """
-experiments package initializer.
+scraper package initializer.
 Provides package context for relative imports.
 """
 
