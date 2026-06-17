@@ -19,7 +19,7 @@ The upgraded scraper now includes enterprise-level reliability features to preve
 ## 📁 File Structure
 
 ```
-experiments/
+scraper/
 ├── config.py              # Configuration & constants
 ├── logger.py              # Logging & metrics tracking
 ├── recovery.py            # Crash recovery & backups
@@ -81,14 +81,14 @@ DEBUG_MODE = False                   # Verbose logging
 ### Basic Run (Single Pass)
 
 ```bash
-cd experiments
+cd scraper
 python tokopedia_test.py
 ```
 
 ### Scheduled Scraping (Recommended)
 
 ```bash
-cd experiments
+cd scraper
 python scheduler.py
 ```
 

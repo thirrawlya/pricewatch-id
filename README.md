@@ -41,10 +41,11 @@ The core premise:
 
 ```txt
 pricewatch-id/
-├── experiments/        # Scraping & data validation
+├── scraper/            # Scraping & data collection pipeline
 ├── backend/            # FastAPI application layer
 ├── frontend/           # React + Vite frontend
 ├── data/               # Database, migrations, seeds
+├── docs/               # Project analysis & reliability docs
 └── README.md
 ```
 

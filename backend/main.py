@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
 import sqlite3
 
 app = FastAPI(title="PriceWatchID API")
@@ -11,7 +12,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DB_PATH = "data/pricewatch.db"
+BASE_DIR = Path(__file__).resolve().parent.parent
+DB_PATH = str(BASE_DIR / "data" / "pricewatch.db")
 
 
 def get_db():
