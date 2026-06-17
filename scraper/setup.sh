@@ -32,7 +32,7 @@ python3 -m playwright install chromium -q || echo "✓ Chromium ready"
 # Initialize database
 echo ""
 echo "💾 Initializing database..."
-cd experiments
+cd scraper
 python3 -c "from database import init_db; init_db(); print('✅ Database initialized')"
 
 # Show structure
@@ -79,5 +79,5 @@ echo "5️⃣  Check backups:"
 echo "   ls -lh ../data/backups/"
 echo ""
 echo "📚 Full documentation:"
-echo "   cat ../RELIABILITY.md"
+echo "   cat ../docs/RELIABILITY.md"
 echo ""
