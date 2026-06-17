@@ -19,3 +19,5 @@ data/backups/
 data/*.db
 *.db
 data/*.db
+*.db
+data/*.db
