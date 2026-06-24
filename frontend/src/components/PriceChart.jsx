@@ -74,18 +74,28 @@ export default function PriceChart({ data, average, days, onChangeDays, analytic
           padding: '20px',
           gap: 6
         }}>
-          <div style={{ display: 'flex', gap: 12, marginBottom: 8 }}>
-            {[...Array(6)].map((_, i) => (
-              <div key={i} style={{
-                width: 20 + Math.random() * 20,
-                height: 15 + Math.random() * 35,
+        <div style={{ display: 'flex', gap: 12, marginBottom: 8 }}>
+          {[
+            { width: 24, height: 18 },
+            { width: 36, height: 42 },
+            { width: 28, height: 25 },
+            { width: 40, height: 48 },
+            { width: 22, height: 20 },
+            { width: 34, height: 38 },
+          ].map((bar, i) => (
+            <div
+              key={i}
+              style={{
+                width: bar.width,
+                height: bar.height,
                 background: `${C.accent}22`,
                 borderRadius: 4,
                 animation: 'pulse 1.5s ease-in-out infinite',
                 animationDelay: `${i * 0.2}s`
-              }} />
-            ))}
-          </div>
+              }}
+            />
+          ))}
+        </div>
           <Database size={24} color={C.textMuted} opacity={0.3} />
           <p style={{ color: C.textMuted, fontSize: 12, margin: 0, fontWeight: 500 }}>
             Menunggu lebih banyak data...

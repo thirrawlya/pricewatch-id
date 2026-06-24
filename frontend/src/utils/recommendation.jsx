@@ -54,9 +54,9 @@ export function getRecommendation(analytics) {
   const confidence = dataPoints < 5 ? 'Low' : dataPoints < 15 ? 'Medium' : 'High';
   const confidenceColor = confidence === 'Low' ? C.yellow : confidence === 'Medium' ? '#F59E0B' : C.accent;
   
-  let status = 'neutral';
-  let reason = 'Harga dalam posisi normal';
-  let savings = 0;
+  let status;
+  let reason;
+  let savings;
   
   if (change_pct <= -8) {
     status = 'buy';

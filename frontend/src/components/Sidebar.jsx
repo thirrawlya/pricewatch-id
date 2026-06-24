@@ -25,12 +25,6 @@ export default function Sidebar({ products, selected, onSelect, sidebarAnalytics
     if (lower.includes('headset') || lower.includes('blackshark') || lower.includes('cloud')) return '🎙️ Headsets'
     return '📦 Others'
   }
-  const grouped = products.reduce((acc, p) => {
-    const cat = getCategory(p.name)
-    if (!acc[cat]) acc[cat] = []
-    acc[cat].push(p)
-    return acc
-  }, {})
   const filteredProducts = query.trim() 
     ? products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()))
     : products

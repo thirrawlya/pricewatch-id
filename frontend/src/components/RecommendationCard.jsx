@@ -10,7 +10,7 @@ import { fmt } from '../utils/formatters';
  * @param {Object} props.analytics - Raw API analytics payload
  * @param {number} props.days - Current time window in days
  */
-export default function RecommendationCard({ analytics, days }) {
+export default function RecommendationCard({ analytics }) {
   if (!analytics) return null;
   
   const rec = getRecommendation(analytics);
@@ -29,7 +29,6 @@ export default function RecommendationCard({ analytics, days }) {
     dataPoints, 
     change_pct, 
     current, 
-    average, 
     percentile 
   } = rec;
   

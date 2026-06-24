@@ -27,7 +27,6 @@ export default function App() {
   const [days, setDays] = useState(30)
   const [loadingMain, setLoadingMain] = useState(false)
   const [sidebarMode, setSidebarMode] = useState('all')
-  const [ready, setReady] = useState(false)
   useEffect(() => {
     fetch(`${API}/products`)
       .then(r => r.json())
@@ -42,8 +41,7 @@ export default function App() {
             .then(r => r.json())
             .then(a => setSidebarAnalytics(prev => ({ ...prev, [p.id]: a })))
             .catch(() => {})
-        })
-        setReady(true)
+        })     
       })
       .catch(err => console.error("Failed to load products:", err))
   }, [])
