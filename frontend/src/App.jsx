@@ -16,8 +16,7 @@ import PriceChart from "./components/PriceChart"
 import RecommendationCard from "./components/RecommendationCard"
 import Sidebar from "./components/Sidebar"
 import PriceHistoryTable from "./components/PriceHistoryTable"
-
-const API = "http://localhost:8000/api"
+const API = import.meta.env.VITE_API_URL
 
 // ── MAIN APP ──
 export default function App() {
