@@ -140,7 +140,11 @@ if __name__ == "__main__":
     with sync_playwright() as p:
 
         browser = p.chromium.launch(
-            headless=False
+            headless=False,
+            args=[
+                "--disable-dev-shm-usage",
+                "--no-sandbox",
+            ],
         )
 
         context = browser.new_context(
@@ -153,15 +157,15 @@ if __name__ == "__main__":
         # STEP 1 — SEARCH & COLLECT LINKS
         # ==========================================
 
-        search_page = context.new_page()
-
         for keyword in KEYWORDS:
+
+            search_page = context.new_page()
 
             try:
                 found_products = scrape_search_results(
                     search_page,
                     keyword,
-                    max_products=20
+                    max_products=20,
                 )
 
                 all_products.extend(found_products)
@@ -169,11 +173,18 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f"❌ Search error: {e}")
 
-            time.sleep(3)
+            finally:
+                try:
+                    search_page.close()
+                except:
+                    pass
 
-        search_page.close()
+            time.sleep(2)
 
-        # remove duplicate global
+        # ==========================================
+        # REMOVE DUPLICATE
+        # ==========================================
+
         unique_products = []
         seen_urls = set()
 
@@ -188,16 +199,12 @@ if __name__ == "__main__":
         print(f"\n📦 FINAL UNIQUE PRODUCTS: {len(unique_products)}")
 
         # ==========================================
-        # SAVE AUTO TO JSON
+        # SAVE JSON
         # ==========================================
 
         try:
             with open("data/products.json", "w") as f:
-                json.dump(
-                    unique_products,
-                    f,
-                    indent=2
-                )
+                json.dump(unique_products, f, indent=2)
 
             print("✅ products.json updated")
 
@@ -220,7 +227,7 @@ if __name__ == "__main__":
 
                 result = scrape_product(
                     page,
-                    product["url"]
+                    product["url"],
                 )
 
                 page.close()
@@ -235,7 +242,7 @@ if __name__ == "__main__":
 
                 product_id = save_product(
                     result["name"] or product["name"],
-                    product["url"]
+                    product["url"],
                 )
 
                 save_price(
@@ -243,7 +250,7 @@ if __name__ == "__main__":
                     result["price"],
                     result["rating"],
                     result["sold"],
-                    result["store"]
+                    result["store"],
                 )
 
                 print(f"✅ Saved: {result['price']}")
