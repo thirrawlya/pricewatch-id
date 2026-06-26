@@ -109,28 +109,43 @@ def init_db():
     migrate_db_schema()
 
 def save_product(name, url):
-    """Save product with transaction safety and error handling."""
-    if not name or not url:
-        raise ValueError("Product name and URL cannot be empty")
-    
+    """Save product or update its name if previously Unknown."""
+    if not url:
+        raise ValueError("Product URL cannot be empty")
+
     conn = get_connection()
+
     try:
         c = conn.cursor()
+
+        # Cek apakah produk sudah ada
+        existing = c.execute(
+            "SELECT id, name FROM products WHERE url = ?",
+            (url,)
+        ).fetchone()
+
+        if existing:
+            product_id = existing["id"]
+
+            # Update nama kalau sebelumnya Unknown atau kosong
+            if name and existing["name"] in (None, "", "Unknown"):
+                c.execute(
+                    "UPDATE products SET name = ? WHERE id = ?",
+                    (name, product_id)
+                )
+                conn.commit()
+
+            return product_id
+
+        # Kalau belum ada, insert baru
         c.execute(
-            "INSERT OR IGNORE INTO products (name, url) VALUES (?, ?)",
-            (name, url)
+            "INSERT INTO products (name, url) VALUES (?, ?)",
+            (name or "Unknown", url)
         )
+
         conn.commit()
-        
-        result = c.execute("SELECT id FROM products WHERE url = ?", (url,)).fetchone()
-        if result:
-            return result[0]
-        else:
-            raise Exception(f"Failed to retrieve product ID for {url}")
-    except sqlite3.IntegrityError as e:
-        raise Exception(f"Product integrity error: {e}")
-    except Exception as e:
-        raise Exception(f"Failed to save product: {e}")
+        return c.lastrowid
+
     finally:
         conn.close()
 
